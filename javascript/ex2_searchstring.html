@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<body>
+	<center>
+		<h1>Ex2 - Search String Non Sensitive Case</h1>
+		<hr>
+		Text Input : 
+			<textarea rows="6" cols="40" id="textinput"></textarea>
+		<br><br>
+		Sensitive Case : 
+			<input type="radio" name="sensitive" class="sensitive" value="Y" checked> Yes 
+			<input type="radio" name="sensitive" class="sensitive" value="N"> No
+		<br><br>
+		Search : 
+			<input type="text" name="search" id="search">
+		<br><br>
+		<button name="bsearch" onclick="searchString();">search</button>
+		<br><br>
+		Result for Search : <span id="result"></span>
+	</center>
+
+</body>
+</html>
+<script language="javascript">
+	function searchString()
+	{
+		var textinput = document.getElementById("textinput");
+		var textsplit = textinput.value.split(" ");
+
+		var radios = document.getElementsByClassName("sensitive");
+		var sensitive;
+		for(var i = 0; i < radios.length; i++){
+			if(radios[i].checked){
+				sensitive = radios[i].value;
+			}
+		}
+
+		var search = document.getElementById("search").value;
+
+		var result = 0;
+		for (var i = 0; i < textsplit.length; i++) {
+			if (sensitive=='N') { 
+				string1 = textsplit[i].toLowerCase(); 
+				string2 = search.toLowerCase(); 
+			}else{
+				string1 = textsplit[i]; 
+				string2 = search;			
+			}			
+			if(string1 === string2){
+				result = result+1;
+			}
+		}
+		var tagspan = document.getElementById("result");
+		tagspan.innerHTML = result;
+	}
+</script>
